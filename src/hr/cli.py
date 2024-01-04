@@ -4,12 +4,12 @@ def create_parser():
     parser = ArgumentParser(description='Export user information to json or csv')
 
     parser.add_argument("--format",
-            help="specify CSV to export to CSV instead of JSON"
-            )
-    parser.add_argument("--path",
+            help="specify CSV to export to CSV instead of JSON",
             default='json',
             choices=['json', 'csv'],
-            type=str.lower,
+            type=str.lower
+            )
+    parser.add_argument("--path",
             help="specify path to export to a file, instead of just being displayed"
             )
 
@@ -20,6 +20,7 @@ def main():
     from hr import export, users
 
     args = create_parser().parse_args()
+    users = users.get_users()
 
     if args.path:
         file = open(args.path, 'w', newline='')
